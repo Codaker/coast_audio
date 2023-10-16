@@ -6,6 +6,7 @@ void main() {
   MabDeviceContext.enableSharedInstance(backends: [
     MabBackend.aaudio,
     MabBackend.coreAudio,
+    MabBackend.wasapi
   ]);
   runApp(const MyApp());
 }
@@ -46,6 +47,8 @@ class _MyAppState extends State<MyApp> {
 
     graphNode.connect(sineNode.outputBus, outputNode.inputBus);
     graphNode.connectEndpoint(outputNode.outputBus);
+
+    var devices = MabDeviceContext.sharedInstance.getDevices(MabDeviceType.playback);
 
     outputTask.start();
   }

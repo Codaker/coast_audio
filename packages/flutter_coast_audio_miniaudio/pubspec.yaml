@@ -10,14 +10,15 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  plugin_platform_interface: ^2.0.2
+  plugin_platform_interface: ^2.1.6
   coast_audio: ^0.0.3
-  coast_audio_miniaudio: ^0.0.2
+  coast_audio_miniaudio:
+    path: ../coast_audio_miniaudio
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
+  flutter_lints: ^2.0.3
 
 flutter:
   plugin:
@@ -29,3 +30,5 @@ flutter:
         pluginClass: FlutterCoastAudioMiniaudioPlugin
       macos:
         pluginClass: FlutterCoastAudioMiniaudioPlugin
+      windows:
+        pluginClass: FlutterCoastAudioMiniaudioPluginCApi

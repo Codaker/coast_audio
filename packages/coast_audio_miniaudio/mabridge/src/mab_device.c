@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <assert.h>
-#include <dlfcn.h>
+//#include <dlfcn.h>
 #include "dart_api_dl.h"
 #include "mab_device.h"
 

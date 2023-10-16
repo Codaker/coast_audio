@@ -1,6 +1,7 @@
 #pragma once
 #include "mab_enum.h"
 #include "mab_types.h"
+#include <stdint.h>
 
 typedef struct {
   mab_encoding_format encodingFormat;

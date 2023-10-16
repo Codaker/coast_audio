@@ -2,7 +2,9 @@
 #include <stddef.h>
 #include <stdlib.h>
 #include <string.h>
-
+#ifdef MAB_WIN32
+#include <windows.h>
+#endif
 typedef int mab_result;
 
 typedef int mab_bool;

@@ -4,6 +4,7 @@ import 'package:coast_audio/coast_audio.dart';
 import 'package:coast_audio/ffi_extension.dart';
 import 'package:coast_audio_miniaudio/coast_audio_miniaudio.dart';
 import 'package:coast_audio_miniaudio/generated/ma_bridge_bindings.dart';
+import 'package:coast_audio_miniaudio/src/ma_bridge/device_info/wasapi_device_info.dart';
 import 'package:coast_audio_miniaudio/src/ma_extension.dart';
 import 'package:ffi/ffi.dart';
 
@@ -40,6 +41,8 @@ class MabDeviceInfo extends MabBase {
         return AAudioDeviceInfo.fromMabDeviceInfo(this, type);
       case MabBackend.openSl:
         return OpenSLDeviceInfo.fromMabDeviceInfo(this, type);
+      case MabBackend.wasapi:
+        return WasapiDeviceInfo.fromMabDeviceInfo(this, type);
     }
   }
 
@@ -85,7 +88,7 @@ class MabDeviceId extends MabBase {
 
   late final pDeviceId = allocate<mab_device_id>(sizeOf<mab_device_id>());
 
-  String get stringId => pDeviceId.cast<Utf8>().toDartString();
+  String get stringId => this.backend == MabBackend.wasapi ? pDeviceId.cast<Utf16>().toDartString() : pDeviceId.cast<Utf8>().toDartString();
   set stringId(String value) {
     if (value.length >= 256) {
       throw Exception('device id should be less than 256 characters');
@@ -107,6 +110,7 @@ class MabDeviceId extends MabBase {
   int get aaudio => intId;
 
   int get openSl => uintId;
+  String get wasapi => stringId;
 
   MabDeviceId copyWith({
     mab_device_id? id,
@@ -144,6 +148,8 @@ class MabDeviceId extends MabBase {
         return aaudio.hashCode;
       case MabBackend.openSl:
         return openSl.hashCode;
+      case MabBackend.wasapi:
+        return wasapi.hashCode;
     }
   }
 }

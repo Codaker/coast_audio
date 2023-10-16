@@ -2,6 +2,7 @@
 #include "mab_enum.h"
 #include "mab_types.h"
 #include "mab_device_context.h"
+#include <stdint.h>
 
 typedef struct mab_device mab_device;
 

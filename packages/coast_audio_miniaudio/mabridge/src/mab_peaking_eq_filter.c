@@ -4,7 +4,7 @@
 #include "mab_types.h"
 #include "mab_peaking_eq_filter.h"
 
-mab_peaking_eq_filter_config mab_peaking_eq_filter_config_init(mab_format format, u_int32_t sampleRate, u_int32_t channels, double gainDb, double q, double frequency)
+mab_peaking_eq_filter_config mab_peaking_eq_filter_config_init(mab_format format, uint32_t sampleRate, uint32_t channels, double gainDb, double q, double frequency)
 {
   mab_peaking_eq_filter_config config = {
       .format = format,
@@ -31,7 +31,7 @@ mab_result mab_peaking_eq_filter_init(mab_peaking_eq_filter* pEQ, mab_peaking_eq
   return MA_SUCCESS;
 }
 
-mab_result mab_peaking_eq_filter_process(mab_peaking_eq_filter* pEQ, void* pFramesOut, const void* pFramesIn, u_int64_t frameCount)
+mab_result mab_peaking_eq_filter_process(mab_peaking_eq_filter* pEQ, void* pFramesOut, const void* pFramesIn, uint64_t frameCount)
 {
   ma_peak2 *pData = (ma_peak2*)pEQ->pData;
   return ma_peak2_process_pcm_frames(pData, pFramesOut, pFramesIn, frameCount);
@@ -44,7 +44,7 @@ mab_result mab_peaking_eq_filter_reinit(mab_peaking_eq_filter* pEQ, mab_peaking_
   return ma_peak2_reinit(&maConfig, pData);
 }
 
-u_int32_t mab_peaking_eq_filter_get_latency(mab_peaking_eq_filter* pEQ)
+uint32_t mab_peaking_eq_filter_get_latency(mab_peaking_eq_filter* pEQ)
 {
   ma_peak2 *pData = (ma_peak2*)pEQ->pData;
   return ma_peak2_get_latency(pData);

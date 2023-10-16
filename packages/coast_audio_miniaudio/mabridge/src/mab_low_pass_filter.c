@@ -3,8 +3,9 @@
 
 #include "mab_types.h"
 #include "mab_low_pass_filter.h"
+#include <stdint.h>
 
-mab_low_pass_filter_config mab_low_pass_filter_config_init(mab_format format, u_int32_t sampleRate, u_int32_t channels, u_int32_t order, double cutoffFrequency)
+mab_low_pass_filter_config mab_low_pass_filter_config_init(mab_format format, uint32_t sampleRate, uint32_t channels, uint32_t order, double cutoffFrequency)
 {
   mab_low_pass_filter_config config = {
       .format = format,
@@ -31,7 +32,7 @@ mab_result mab_low_pass_filter_init(mab_low_pass_filter* pLPF, mab_low_pass_filt
   return mab_cast(mab_result, result);
 }
 
-mab_result mab_low_pass_filter_process(mab_low_pass_filter* pLPF, void* pFramesOut, const void* pFramesIn, u_int64_t frameCount)
+mab_result mab_low_pass_filter_process(mab_low_pass_filter* pLPF, void* pFramesOut, const void* pFramesIn, uint64_t frameCount)
 {
   ma_result result = ma_lpf_process_pcm_frames((ma_lpf*)pLPF->pData, pFramesOut, pFramesIn, frameCount);
   return mab_cast(mab_result, result);
@@ -44,9 +45,9 @@ mab_result mab_low_pass_filter_reinit(mab_low_pass_filter* pLPF, mab_low_pass_fi
   return mab_cast(mab_result, result);
 }
 
-u_int32_t mab_low_pass_filter_get_latency(mab_low_pass_filter* pLPF)
+uint32_t mab_low_pass_filter_get_latency(mab_low_pass_filter* pLPF)
 {
-  return (u_int32_t)ma_lpf_get_latency((ma_lpf*)pLPF->pData);
+  return (uint32_t)ma_lpf_get_latency((ma_lpf*)pLPF->pData);
 }
 
 void mab_low_pass_filter_uninit(mab_low_pass_filter* lpf)

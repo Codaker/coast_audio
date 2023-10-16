@@ -23,6 +23,8 @@ class MabLibrary {
 
     if (Platform.isAndroid) {
       _library = MaBridge(DynamicLibrary.open('libmabridge.so'));
+    } else if (Platform.isWindows) {
+      _library = MaBridge(DynamicLibrary.open('libmabridge.dll'));
     } else {
       _library = MaBridge(DynamicLibrary.process());
     }

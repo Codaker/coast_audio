@@ -4,7 +4,7 @@
 #include "mab_types.h"
 #include "mab_low_shelf_filter.h"
 
-mab_low_shelf_filter_config mab_low_shelf_filter_config_init(mab_format format, u_int32_t sampleRate, u_int32_t channels, double gainDb, double shelfSlope, double frequency)
+mab_low_shelf_filter_config mab_low_shelf_filter_config_init(mab_format format, uint32_t sampleRate, uint32_t channels, double gainDb, double shelfSlope, double frequency)
 {
   mab_low_shelf_filter_config config = {
       .format = format,
@@ -31,7 +31,7 @@ mab_result mab_low_shelf_filter_init(mab_low_shelf_filter* pLSF, mab_low_shelf_f
   return MA_SUCCESS;
 }
 
-mab_result mab_low_shelf_filter_process(mab_low_shelf_filter* pLSF, void* pFramesOut, const void* pFramesIn, u_int64_t frameCount)
+mab_result mab_low_shelf_filter_process(mab_low_shelf_filter* pLSF, void* pFramesOut, const void* pFramesIn, uint64_t frameCount)
 {
   ma_loshelf2 *pData = (ma_loshelf2*)pLSF->pData;
   return ma_loshelf2_process_pcm_frames(pData, pFramesOut, pFramesIn, frameCount);
@@ -44,7 +44,7 @@ mab_result mab_low_shelf_filter_reinit(mab_low_shelf_filter* pLSF, mab_low_shelf
   return ma_loshelf2_reinit(&maConfig, pData);
 }
 
-u_int32_t mab_low_shelf_filter_get_latency(mab_low_shelf_filter* pLSF)
+uint32_t mab_low_shelf_filter_get_latency(mab_low_shelf_filter* pLSF)
 {
   ma_loshelf2 *pData = (ma_loshelf2*)pLSF->pData;
   return ma_loshelf2_get_latency(pData);

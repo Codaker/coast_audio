@@ -3,8 +3,8 @@ import 'package:coast_audio_miniaudio/generated/ma_bridge_bindings.dart';
 
 /// Mapped enum of ma_backend.
 enum MabBackend {
-  // wasapi(mab_backend.mab_backend_wasapi, 'WASAPI'),
-  // dsound(mab_backend.mab_backend_dsound, 'DirectSound'),
+  wasapi(mab_backend.mab_backend_wasapi, 'WASAPI'),
+  //dsound(mab_backend.mab_backend_dsound, 'DirectSound'),
   // winmm(mab_backend.mab_backend_winmm, 'WinMM'),
   coreAudio(mab_backend.mab_backend_coreaudio, 'Core Audio'),
   // sndio(mab_backend.mab_backend_sndio, 'sndio'),

@@ -16,6 +16,10 @@ if ("${OS}" STREQUAL "APPLE")
   add_library(${PROJECT_NAME} STATIC ${HEADER_FILES} ${SOURCE_FILES})
 elseif ("${OS}" STREQUAL "ANDROID")
   add_library(${PROJECT_NAME} SHARED ${HEADER_FILES} ${SOURCE_FILES})
+elseif ("${OS}" STREQUAL "WIN32")
+  add_compile_definitions(MAB_WIN32)
+  add_compile_definitions(_X86_)
+  add_library(${PROJECT_NAME} SHARED ${HEADER_FILES} ${SOURCE_FILES})
 endif()
 
 set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
@@ -44,4 +48,8 @@ elseif ("${OS}" STREQUAL "ANDROID")
   install (TARGETS ${PROJECT_NAME}
     LIBRARY DESTINATION .
   )
+elseif ("${OS}" STREQUAL "WIN32")
+  install (TARGETS ${PROJECT_NAME}
+          LIBRARY DESTINATION .
+          )
 endif()
