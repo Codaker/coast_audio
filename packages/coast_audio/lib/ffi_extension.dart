@@ -24,3 +24,25 @@ extension ArrayCharExtension on Array<Char> {
     mem.allocator.free(pStr);
   }
 }
+
+extension ArrayWCharExtension on Array<WChar> {
+  String getString(int maxLength, {Memory? memory}) {
+    final mem = memory ?? Memory();
+    final pStr = mem.allocator.allocate<WChar>(maxLength);
+    for (var i = 0; maxLength > i; i++) {
+      pStr[i] = this[i];
+    }
+    final str = pStr.cast<Utf16>().toDartString();
+    mem.allocator.free(pStr);
+    return str;
+  }
+
+  void setString(String value, {Memory? memory}) {
+    final mem = memory ?? Memory();
+    final pStr = value.toNativeUtf16(allocator: mem.allocator).cast<WChar>();
+    for (var i = 0; value.codeUnits.length > i; i++) {
+      this[i] = pStr[i];
+    }
+    mem.allocator.free(pStr);
+  }
+}
