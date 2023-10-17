@@ -12,8 +12,7 @@ dependencies:
     sdk: flutter
   plugin_platform_interface: ^2.1.6
   coast_audio: ^0.0.3
-  coast_audio_miniaudio:
-    path: ../coast_audio_miniaudio
+  coast_audio_miniaudio: ^0.0.2
 
 dev_dependencies:
   flutter_test:
